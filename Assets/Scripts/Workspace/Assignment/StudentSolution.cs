@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace Assignment
 {
@@ -67,7 +67,6 @@ namespace Assignment
             return actions.ToArray();
         }
 
-
         public string[] LCT04_ActionQueue()
         {
             Action action1 = new Action { Name = "Action 1" };
@@ -83,8 +82,6 @@ namespace Assignment
             List<string> actions = new List<string>();
             for (int i = 0; i < c; i++)
             {
-                //Action a = queue.Dequeue();
-                //actions.Add(queue.Dequeue().Name);
                 var a = queue.Dequeue();
                 actions.Add(a.Name);
             }
@@ -98,9 +95,22 @@ namespace Assignment
 
         public string ASN01_ReverseString(string str)
         {
-            char[] chars = str.ToCharArray();
-            Array.Reverse(chars);
-            return new string(chars);
+            Stack<char> stack = new Stack<char>();
+
+            // 1. Push แต่ละ character ของ str เข้า Stack
+            foreach (char c in str)
+            {
+                stack.Push(c);
+            }
+
+            // 2. Pop ออกมาทีละตัวและนำมารวมกันเป็น string ใหม่
+            StringBuilder sb = new StringBuilder();
+            while (stack.Count > 0)
+            {
+                sb.Append(stack.Pop());
+            }
+
+            return sb.ToString();
         }
 
         public bool ASN02_StackPalindrome(string str)
